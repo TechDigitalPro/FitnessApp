@@ -1,0 +1,91 @@
+name: nxtlvl_app
+description: "NXTLVL Gym App"
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.6.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # Design
+  cupertino_icons: ^1.0.8
+  cached_network_image: ^3.4.1
+  lottie: ^3.3.1
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.17
+  flutter_native_splash: ^2.4.4
+
+  # for MVC
+  stacked: ^3.4.1
+  get_it: ^8.0.3
+  provider: ^6.1.2
+
+  # System
+  shared_preferences: ^2.3.5
+
+  # Api calls
+  dio: ^5.7.0
+
+  # Auth
+  firebase_core: ^3.10.0
+  firebase_messaging: ^15.2.0
+  flutter_local_notifications: ^18.0.1
+
+  # Utils
+  nb_utils: ^7.0.8
+  bot_toast: ^4.1.3
+  url_launcher: ^6.3.1
+  share_plus: ^10.1.4
+  rxdart: ^0.28.0
+  keyboard_actions: ^4.2.0
+
+  # More
+  expandable: ^5.0.1
+  intl: ^0.20.1 
+  image_picker: ^1.0.4
+  flutter_multi_formatter: ^2.12.1
+  permission_handler: ^11.1.0
+  app_tracking_transparency: ^2.0.4
+  flutter_datetime_picker_plus: ^2.1.0
+  flutter_staggered_grid_view: ^0.7.0
+  flutter_html: ^3.0.0-beta.2
+  flutter_verification_code: ^1.1.7
+  any_link_preview: ^3.0.1
+  geolocator: ^13.0.2
+  latlong2: ^0.9.0
+  flutter_cached_pdfview: ^0.4.2
+  flutter_search_bar: ^3.0.0
+  like_button: ^2.0.5
+  slide_countdown: ^2.0.2
+  flutter_carousel_widget: ^3.1.0
+  flutter_timer_countdown: ^1.0.7
+
+  # video
+  video_thumbnail_imageview: ^0.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+  - assets/
+  - assets/images/
+  - assets/images/png/
+  - assets/images/svg/
+  - assets/images/json/
+
+  fonts:
+   - family: Point
+     fonts:
+      - asset: assets/fonts/Montserrat-Regular.ttf
+      - asset: assets/fonts/Montserrat-Bold.ttf
