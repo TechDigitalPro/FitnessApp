@@ -40,7 +40,7 @@ class ItemAppbarLogoBg extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: ColorUtils.appColorBlack_10,
+            color: ColorUtils.appColorTransparent,
             spreadRadius: 1,
             blurRadius: 1,
             offset: const Offset(0, 0),

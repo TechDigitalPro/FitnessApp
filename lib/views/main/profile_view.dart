@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,6 +15,7 @@ import '../../utils/system_utils.dart';
 import '../../utils/widget_utils.dart';
 import '../../view_models/main/home_view_model.dart';
 import '../../view_models/main/profile_view_model.dart';
+import '../items/item_glass_card.dart';
 import '../items/item_profile_view.dart';
 
 // ignore: must_be_immutable
@@ -43,18 +45,85 @@ class _ProfileViewState extends State<ProfileView> with AutomaticKeepAliveClient
     return PopScope(
         child: Scaffold(
           backgroundColor: ColorUtils.appColorMain,
-          body: model.user != null && model.user!.active != '0' ?
-            SizedBox(
+          body: SizedBox(
               child: Container(
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: height * 0.15,
+                  Container(
+                    alignment: Alignment.topRight,
+                    padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                    height: height * 0.05,
+                    child: IconButton(
+                      splashRadius: 25,
+                      icon: Icon(
+                        Icons.edit_outlined,
+                        color: ColorUtils.appColorWhite,
+                      ),
+                      onPressed: () {
+                        model.onClickEdit(context);
+                      },
+                    ),
                   ),
                   model.user == null ? Container() :
                   Column(
                     children: [
+                      Container(
+                        height: height * 0.2,
+                        width: height * 0.2,
+                        margin: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: ColorUtils.appColorCard,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: ColorUtils.appColorBlack_10,
+                                  blurRadius: 10,
+                                  offset: Offset(0, 0)),
+                            ]),
+                        child: Stack(children: <Widget>[
+                          model.imagePath.isNotEmpty
+                              ? Container(
+                                  alignment: Alignment.center,
+                                  child: ClipOval(
+                                    child: SizedBox.fromSize(
+                                    size: Size.fromRadius(height * 0.1),
+                                    child: Image.network(
+                                      model.imagePath,
+                                      fit: BoxFit.cover,
+                                      alignment: Alignment.center,
+                                    ),
+                                  )),
+                                )
+                              : Container(
+                                  color: ColorUtils.appColorTransparent,
+                                ),
+                          Container(
+                            alignment: Alignment.center,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.camera_alt_outlined,
+                                  color: ColorUtils.appColorWhite_50,
+                                ),
+                              ],
+                            ),
+                          ).visible(model.user == null ||
+                              model.user!.imageUrl!.isEmpty),
+                          Container(
+                            margin: const EdgeInsets.all(10),
+                            child: DottedBorder(
+                                color: ColorUtils.appColorTextWhite,
+                                strokeWidth: 1,
+                                borderType: BorderType.Circle,
+                                radius: const Radius.circular(10),
+                                child: GestureDetector(
+                                )),
+                          ).visible(model.user == null ||
+                              model.user!.imageUrl!.isEmpty),
+                        ])),
                       ItemProfileView(
                           imageStr: ImageUtils.imgIcName,
                           titleStr: StringUtils.txtUserName,
@@ -77,6 +146,26 @@ class _ProfileViewState extends State<ProfileView> with AutomaticKeepAliveClient
                           onTap: () {
                             model.onLogout(context);
                           },),
+                      model.user!.bio == null ? Container() :
+                      Container(
+                        height: height * 0.2,
+                        margin: EdgeInsets.all(5),
+                        child: ItemGlassCard(
+                          child: SizedBox(
+                            child: SingleChildScrollView(
+                              physics: BouncingScrollPhysics(),
+                              child: Container(
+                                child: textViewHtml(
+                                  model.user!.bio,
+                                  textColor: ColorUtils.appColorWhite,
+                                  fontSize: SizeUtils.textSizeMedium,
+                                  maxLine: 50),
+                              ),
+                            )
+                          )
+                          
+                        ),
+                      )
                     ],
                   ),
                   Expanded(
@@ -113,47 +202,7 @@ class _ProfileViewState extends State<ProfileView> with AutomaticKeepAliveClient
                 ],
               ),
             ))
-          : SafeArea(
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    child: Center(
-                      child: textView(
-                        model.user == null
-                            ? StringUtils.txtYouMustCreateOrLogin
-                            : StringUtils.txtYouMustVerifyEmail,
-                        textColor: ColorUtils.appColorBlack,
-                        fontSize: SizeUtils.textSizeMedium,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.fromLTRB(
-                        5, 25, 5, 15),
-                    child: RoundButton(
-                      backgroundColor: ColorUtils.appColorPrimary,
-                        isStroked: false,
-                        textContent:  model.user == null ?
-                          StringUtils.txtSignIn : StringUtils.txtVerifyEmail,
-                        textSize: SizeUtils.textSizeMedium,
-                        radius: 5,
-                        onPressed: () {
-                          model.onClickLogin(
-                              context,
-                            );
-                        }),
-                  ),
-                ]
-              ),
-            )
-          ),
+          
         ),
         onPopInvokedWithResult: (isInvoke, result) {});
   }

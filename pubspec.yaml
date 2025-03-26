@@ -65,6 +65,7 @@ dependencies:
   slide_countdown: ^2.0.2
   flutter_carousel_widget: ^3.1.0
   flutter_timer_countdown: ^1.0.7
+  dotted_border: ^2.1.0
 
   # video
   video_thumbnail_imageview: ^0.0.6

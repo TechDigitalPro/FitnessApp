@@ -1,3 +1,5 @@
+import '../../utils/api_utils.dart';
+
 class UserModel {
   String? id;
   String? name;
@@ -14,6 +16,7 @@ class UserModel {
   String? street;
   String? state;
   String? zip;
+  String? imageUrl;
 
   UserModel({
     this.id,
@@ -31,6 +34,7 @@ class UserModel {
     this.street,
     this.state,
     this.zip,
+    this.imageUrl,
   });
 
   Map<String, dynamic> toJson() => {
@@ -49,6 +53,7 @@ class UserModel {
         'street': street,
         'state': state,
         'zip': zip,
+        'photo': imageUrl,
       };
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -67,5 +72,6 @@ class UserModel {
         street: json['street'],
         state: json['state'],
         zip: json['zip'],
+        imageUrl: json['photo'] == null ? null : json['photo'].toString().contains("http") ? json['photo'].toString() : ApiUtils.urlImagePre + json['photo'].toString(),
       );
 }

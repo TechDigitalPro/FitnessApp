@@ -155,7 +155,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
                                 width: 24, height: 24, )
                             ),
                           ],
-                        )
+                        ).visible(false)
                         )
                       ],
                     ),

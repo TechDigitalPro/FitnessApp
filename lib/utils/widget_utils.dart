@@ -217,6 +217,8 @@ Widget textViewHtml(
   double? fontSize = SizeUtils.textSizeNormal,
   Color? textColor,
   bool textAllCaps = false,
+  var maxLine = 10,
+  var isLongText = false,
   Function? onLinkClicked,
 }) {
   return Html(
@@ -238,6 +240,7 @@ Widget textViewHtml(
           fontSize: FontSize(fontSize ?? SizeUtils.textSizeNormal),
           fontWeight: FontWeight.w500,
           margin: Margins.zero,
+          maxLines: isLongText ? null : maxLine,
           //padding: EdgeInsets.zero,
         )
       });

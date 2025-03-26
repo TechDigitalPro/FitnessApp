@@ -78,12 +78,16 @@ class ItemTrainerViewState extends State<ItemTrainerView> {
                           isCentered: false,
                           maxLine: 5),
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       widget.model.bio == null ? Container() :
                       Container(
                         child: textViewHtml(
                           widget.model.bio,
                           textColor: ColorUtils.appColorWhite,
-                          fontSize: SizeUtils.textSizeMedium,),
+                          fontSize: SizeUtils.textSizeMedium,
+                          maxLine: 5),
                       )
                     ],
                   )),

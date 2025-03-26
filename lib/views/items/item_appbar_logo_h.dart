@@ -41,7 +41,7 @@ class ItemAppbarLogoH extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: ColorUtils.appColorWhite_5,
+            color: ColorUtils.appColorTransparent,
             spreadRadius: 1,
             blurRadius: 1,
             offset: const Offset(0, 0),

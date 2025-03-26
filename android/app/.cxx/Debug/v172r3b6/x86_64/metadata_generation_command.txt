@@ -1,0 +1,20 @@
+                        -H/Volumes/Data/Development/SDK/flutter/packages/flutter_tools/gradle/src/main/groovy
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_SYSTEM_VERSION=24
+-DANDROID_PLATFORM=android-24
+-DANDROID_ABI=x86_64
+-DCMAKE_ANDROID_ARCH_ABI=x86_64
+-DANDROID_NDK=/Users/birdmac/Library/Android/sdk/ndk/25.1.8937393
+-DCMAKE_ANDROID_NDK=/Users/birdmac/Library/Android/sdk/ndk/25.1.8937393
+-DCMAKE_TOOLCHAIN_FILE=/Users/birdmac/Library/Android/sdk/ndk/25.1.8937393/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/Users/birdmac/Library/Android/sdk/cmake/3.22.1/bin/ninja
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Volumes/Data/Development/Work/Xavier/App/FitnessApp/working_source/fitness_nxtlvl_app/nxtlvl_app/build/app/intermediates/cxx/Debug/v172r3b6/obj/x86_64
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/Volumes/Data/Development/Work/Xavier/App/FitnessApp/working_source/fitness_nxtlvl_app/nxtlvl_app/build/app/intermediates/cxx/Debug/v172r3b6/obj/x86_64
+-DCMAKE_BUILD_TYPE=Debug
+-B/Volumes/Data/Development/Work/Xavier/App/FitnessApp/working_source/fitness_nxtlvl_app/nxtlvl_app/android/app/.cxx/Debug/v172r3b6/x86_64
+-GNinja
+-Wno-dev
+--no-warn-unused-cli
+                        Build command args: []
+                        Version: 2

@@ -76,6 +76,7 @@ class StringUtils {
   static String txtWorkout = 'Workouts';
   static String txtTrainer = 'Trainers';
   static String txtHome = 'Home';
+  static String txtNews = 'News';
   static String txtPromosNearMe = 'Promos near me';
   static String txtNearMe = 'Near me';
   static String txtProfile = 'Profile';

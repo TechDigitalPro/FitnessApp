@@ -1,17 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../utils/color_utils.dart';
-import '../../utils/image_utils.dart';
-import '../../utils/size_utils.dart';
-import '../../utils/string_utils.dart';
 import '../../utils/system_utils.dart';
-import '../../utils/widget_utils.dart';
 import '../../view_models/main/home_view_model.dart';
+import '../items/item_news_view.dart';
 
 // ignore: must_be_immutable
 class HomeView extends StatefulWidget {
@@ -48,23 +41,8 @@ class _HomeViewState extends State<HomeView>
             return Future.value();
           },
           child: SizedBox(
-            child: SizedBox(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                              height: height * 0.16), // Reduced height here
-                          // getWeekDealsView(model, context),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
+            child: ListView(
+              children: getListView(model, context),
             ),
           ),
         ),
@@ -73,50 +51,16 @@ class _HomeViewState extends State<HomeView>
     );
   }
 
-  // getWeekDealsView(HomeViewModel model, BuildContext context) {
-  //   return model.weekDealList.isEmpty
-  //       ? Container()
-  //       : Container(
-  //           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-  //           child: Column(
-  //             mainAxisSize: MainAxisSize.min,
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             children: [
-  //               ItemMainHeader(
-  //                 image: ImageUtils.imgIcDeal,
-  //                 content: StringUtils.txtDealsOfTheWeek,
-  //                 onClicked: () {
-  //                   model.onClickAllWeekDeal(context);
-  //                 },
-  //               ),
-  //               FlutterCarousel(
-  //                 options: CarouselOptions(
-  //                   aspectRatio: 0.85,
-  //                   disableCenter: true,
-  //                   floatingIndicator: false,
-  //                   showIndicator: true,
-  //                   slideIndicator: CircularSlideIndicator(
-  //                       slideIndicatorOptions: SlideIndicatorOptions(
-  //                           indicatorBackgroundColor:
-  //                               ColorUtils.appColorBlack_10,
-  //                           currentIndicatorColor: ColorUtils.appColorPrimary)),
-  //                 ),
-  //                 items: model.weekDealList.map((item) {
-  //                   return ItemWeekDealView(
-  //                     model: item,
-  //                     onClick: () {
-  //                       model.onWeekDealItemClicked(context, item);
-  //                     },
-  //                     onFavoriteClicked: () {
-  //                       model.onCampaignFavoriteClicked(context, item);
-  //                     },
-  //                   );
-  //                 }).toList(),
-  //               ),
-  //             ],
-  //           ),
-  //         );
-  // }
+  getListView(HomeViewModel model, BuildContext context) {
+    return model.mList.map((item) {
+      return ItemNewsView(
+        model: item,
+        onClick: () {
+          model.onItemClicked(context, item);
+        },
+      );
+    }).toList();
+  }
 
   @override
   bool get wantKeepAlive => true;

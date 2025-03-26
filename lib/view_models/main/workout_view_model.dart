@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nxtlvl_app/extentions/widget_extensions.dart';
 import '../../model/common/user_model.dart';
 import '../../model/common/workout_model.dart';
-import '../../model/request/get_workouts_req.dart';
 import '../../model/response/get_workouts_res.dart';
-import '../../service/common_service.dart';
 import '../../utils/string_utils.dart';
 import '../../utils/widget_utils.dart';
 import '../../views/auth/login_view.dart';
@@ -25,8 +23,7 @@ class WorkoutViewModel extends BaseViewModel{
 
     try {
       showLoading();
-      GetWorkoutsReq req = GetWorkoutsReq(trainerId: '15');
-      GetWorkoutsRes? res = await networkService.doGetTrainerWorkouts(token ?? '', req);
+      GetWorkoutsRes? res = await networkService.doGetWorkouts(token ?? '');
       hideLoading();
       if (res != null) {
         if (res.status ?? false) {

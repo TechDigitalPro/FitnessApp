@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:nxtlvl_app/utils/image_utils.dart';
-import 'package:video_thumbnail_imageview/video_thumbnail_imageview.dart';
 import '../../model/common/workout_model.dart';
 import '../../utils/color_utils.dart';
 import '../../utils/size_utils.dart';
@@ -29,17 +27,16 @@ class ItemWorkoutViewState extends State<ItemWorkoutView> {
 
     Widget image = ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(10)),
-      child: widget.model.videoUrl == null ? Container()
-      : widget.model.videoUrl!.contains('http') || widget.model.videoUrl!.contains('https') 
-      ? VTImageView(
-          videoUrl: widget.model.videoUrl!,
+      child: widget.model.imageUrl == null ? Container()
+      : widget.model.imageUrl!.contains('http') || widget.model.imageUrl!.contains('https') 
+      ? CachedNetworkImage(
+          imageUrl: widget.model.imageUrl!,
           width: width,
           height: width * 9 / 16,
           fit: BoxFit.cover,
-          errorBuilder: (context, url, error) => const Icon(Icons.error), 
-          assetPlaceHolder: ImageUtils.imgIcLogoIconWhite,
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         )
-      : Image.asset(widget.model.videoUrl!,
+      : Image.asset(widget.model.imageUrl!,
         width: width,
         height: width * 9 / 16,
         fit: BoxFit.cover,
@@ -80,6 +77,9 @@ class ItemWorkoutViewState extends State<ItemWorkoutView> {
                           fontWeight: FontWeight.bold,
                           isCentered: false,
                           maxLine: 5),
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       widget.model.description == null ? Container() :
                       Container(

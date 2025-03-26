@@ -50,7 +50,7 @@ class SignUpViewModel extends BaseViewModel with WidgetsBindingObserver{
         name: userName,
         email: email,
         password: password,
-        role: '1');
+        role: '0');
     try {
       showLoading();
       LoginRes? res = await networkService.doRegister(req);

@@ -37,10 +37,10 @@ class LoginViewModel extends BaseViewModel{
       showMessage(StringUtils.txtPleaseEnterCorrectEmail, null);
       return;
     }
-    if(!isValidPassword(password)){
-      showMessage(StringUtils.txtPleaseEnterCorrectPassword, null);
-      return;
-    }
+    // if(!isValidPassword(password)){
+    //   showMessage(StringUtils.txtPleaseEnterCorrectPassword, null);
+    //   return;
+    // }
     LoginReq req = LoginReq(email: email, password: password);
     try{
       showLoading();

@@ -9,6 +9,7 @@ import '../model/request/register_req.dart';
 import '../model/request/resend_verification_req.dart';
 import '../model/request/verify_email_req.dart';
 import '../model/response/api_res.dart';
+import '../model/response/get_news_res.dart';
 import '../model/response/get_trainers_res.dart';
 import '../model/response/get_workouts_res.dart';
 import '../model/response/login_res.dart';
@@ -81,7 +82,7 @@ class NetworkService {
     var res = await doPostRequest(ApiUtils.urlLogin, body: req.toJson());
     LoginRes? response;
     try{
-      response = LoginRes.fromJson(jsonDecode(res));
+      response = LoginRes.fromJson(res);
     }catch (e){
       debugPrint(e.toString());
     }
@@ -92,7 +93,7 @@ class NetworkService {
     var res = await doPostRequest(ApiUtils.urlRegister, body: req.toJson());
     LoginRes? response;
     try{
-      response = LoginRes.fromJson(jsonDecode(res));
+      response = LoginRes.fromJson(res);
     }catch (e){
       debugPrint(e.toString());
     }
@@ -103,7 +104,7 @@ class NetworkService {
     var res = await doPostRequest(ApiUtils.urlVerifyEmail, body: req.toJson());
     VerifyEmailRes? response;
     try{
-      response = VerifyEmailRes.fromJson(jsonDecode(res));
+      response = VerifyEmailRes.fromJson(res);
     }catch (e){
       debugPrint(e.toString());
     }
@@ -114,7 +115,7 @@ class NetworkService {
     var res = await doPostRequest(ApiUtils.urlResendVerificationEmail, body: req.toJson());
     ApiRes? response;
     try{
-      response = ApiRes.fromJson(jsonDecode(res));
+      response = ApiRes.fromJson(res);
     }catch (e){
       debugPrint(e.toString());
     }
@@ -125,7 +126,7 @@ class NetworkService {
     var res = await doPostRequest(ApiUtils.urlGetTrainerList, token: token);
     GetTrainersRes? response;
     try{
-      response = GetTrainersRes.fromJson(jsonDecode(res));
+      response = GetTrainersRes.fromJson(res);
     }catch (e){
       debugPrint(e.toString());
     }
@@ -136,7 +137,29 @@ class NetworkService {
     var res = await doPostRequest(ApiUtils.urlGetWorkoutList, token: token, body: req.toJson());
     GetWorkoutsRes? response;
     try{
-      response = GetWorkoutsRes.fromJson(jsonDecode(res));
+      response = GetWorkoutsRes.fromJson(res);
+    }catch (e){
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  Future<GetWorkoutsRes?> doGetWorkouts(String token) async {
+    var res = await doPostRequest(ApiUtils.urlGetWorkoutList, token: token);
+    GetWorkoutsRes? response;
+    try{
+      response = GetWorkoutsRes.fromJson(res);
+    }catch (e){
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  Future<GetNewsRes?> doGetNews(String token) async {
+    var res = await doPostRequest(ApiUtils.urlGetNewsList, token: token);
+    GetNewsRes? response;
+    try{
+      response = GetNewsRes.fromJson(res);
     }catch (e){
       debugPrint(e.toString());
     }

@@ -1,20 +1,22 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nxtlvl_app/extentions/widget_extensions.dart';
 import '../../model/common/user_model.dart';
 import '../../utils/string_utils.dart';
 import '../../utils/widget_utils.dart';
 import '../../views/auth/login_view.dart';
 import '../../views/auth/verification_view.dart';
-import '../../views/main/main_view.dart';
 import '../base_view_model.dart';
 
 class ProfileViewModel extends BaseViewModel{
   UserModel? user;
+  String imagePath = '';
 
   initialize(BuildContext context) async{
     user = await sharedService.getUser();
+    imagePath = user!.imageUrl!;
 
     notifyListeners();
   }
@@ -56,13 +58,13 @@ class ProfileViewModel extends BaseViewModel{
 
   gotoLogin(BuildContext context) {
       sharedService.clear();
-      MainView().launch(context, isNewTask: true);
+      LoginView().launch(context, isNewTask: true);
     }
 
   onLogout(BuildContext context) {
     sharedService.clear();
     sharedService.saveIsFirst(false);
-    MainView().launch(context, isNewTask: true);
+    LoginView().launch(context, isNewTask: true);
   }
 
   onClickLogin(BuildContext context) {
@@ -71,5 +73,19 @@ class ProfileViewModel extends BaseViewModel{
     }else {
       const VerificationView().launch(context);
     }
+  }
+
+  onClickAddPhoto(BuildContext context) async {
+    final ImagePicker picker = ImagePicker();
+    XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if(image != null){
+      imagePath = image.path;
+    }
+
+    notifyListeners();
+  }
+
+  onClickEdit(BuildContext context) {
+
   }
 }

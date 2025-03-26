@@ -34,7 +34,7 @@ class TrainerModel {
         'name': name,
         'email': email,
         'trainerCode': trainerCode,
-        'image_url': imageUrl,
+        'photo': imageUrl,
         'language': language,
         'bio': bio,
         'specialty': specialty,
@@ -49,8 +49,7 @@ class TrainerModel {
         name: json['name'],
         email: json['email'],
         trainerCode: json['trainerCode'],
-        imageUrl: json['image_url'] == null ? null :
-          json['image_url'].toString().contains('localhost') ? ApiUtils.urlImagePre + json['image_url'].toString().split('/images/')[1] : json['image_url'],
+        imageUrl: json['photo'] == null ? null : ApiUtils.urlImagePre + json['photo'].toString(),
         language: json['language'],
         bio: json['bio'],
         specialty: json['specialty'],
