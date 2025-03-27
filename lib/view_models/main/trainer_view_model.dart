@@ -8,6 +8,7 @@ import '../../model/response/get_trainers_res.dart';
 import '../../utils/string_utils.dart';
 import '../../utils/widget_utils.dart';
 import '../../views/auth/login_view.dart';
+import '../../views/other/trainer_detail_view.dart';
 import '../base_view_model.dart';
 
 class TrainerViewModel extends BaseViewModel{
@@ -52,6 +53,6 @@ class TrainerViewModel extends BaseViewModel{
   }
 
   onItemClicked(BuildContext context, TrainerModel item) {
-
+      TrainerDetailView(trainer: item,).launch(context);
   }
 }

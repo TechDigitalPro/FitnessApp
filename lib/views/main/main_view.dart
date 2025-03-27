@@ -6,11 +6,9 @@ import 'package:stacked/stacked.dart';
 import '../../utils/color_utils.dart';
 import '../../utils/image_utils.dart';
 import '../../utils/size_utils.dart';
-import '../../utils/string_utils.dart';
 import '../../utils/system_utils.dart';
 import '../../utils/widget_utils.dart';
 import '../../view_models/main/main_view_model.dart';
-import '../items/item_appbar_logo.dart';
 import '../items/item_appbar_logo_h.dart';
 
 // ignore: must_be_immutable

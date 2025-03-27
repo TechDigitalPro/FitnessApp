@@ -170,6 +170,6 @@ class ResetPasswordView extends StatelessWidget {
             ),
           ),
         ),
-        onPopInvoked: (isInvoke) {});
+        onPopInvokedWithResult: (isInvoke, result) {});
   }
 }

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -10,6 +9,7 @@ import '../model/request/resend_verification_req.dart';
 import '../model/request/verify_email_req.dart';
 import '../model/response/api_res.dart';
 import '../model/response/get_news_res.dart';
+import '../model/response/get_plan_res.dart';
 import '../model/response/get_trainers_res.dart';
 import '../model/response/get_workouts_res.dart';
 import '../model/response/login_res.dart';
@@ -160,6 +160,17 @@ class NetworkService {
     GetNewsRes? response;
     try{
       response = GetNewsRes.fromJson(res);
+    }catch (e){
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  Future<GetPlansRes?> doGetPlans(String token) async {
+    var res = await doPostRequest(ApiUtils.urlGetPlanList, token: token);
+    GetPlansRes? response;
+    try{
+      response = GetPlansRes.fromJson(res);
     }catch (e){
       debugPrint(e.toString());
     }

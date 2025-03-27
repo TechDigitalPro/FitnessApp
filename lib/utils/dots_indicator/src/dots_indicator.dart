@@ -1,4 +1,4 @@
-library dots_indicator;
+library;
 
 import 'package:flutter/material.dart';
 import 'dots_decorator.dart';

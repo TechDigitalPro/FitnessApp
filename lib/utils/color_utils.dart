@@ -87,6 +87,6 @@ class ColorUtils {
   }
 
   static String colorToHex(Color color) {
-    return '#${color.value.toRadixString(16).substring(2, 8)}';
+    return '#${color.toARGB32().toRadixString(16).substring(2, 8)}';
   }
 }

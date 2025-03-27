@@ -1148,7 +1148,7 @@ class LoadingWidget extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(8))),
       child: CircularProgressIndicator(
         backgroundColor: ColorUtils.appColorWhite,
-        color: ColorUtils.appColorPrimary.withOpacity(0.5),
+        color: ColorUtils.appColorPrimary.withAlpha(50),
       ),
     );
   }

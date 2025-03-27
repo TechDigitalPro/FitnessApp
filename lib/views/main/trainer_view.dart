@@ -1,18 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../utils/color_utils.dart';
-import '../../utils/image_utils.dart';
-import '../../utils/size_utils.dart';
-import '../../utils/string_utils.dart';
 import '../../utils/system_utils.dart';
-import '../../utils/widget_utils.dart';
-import '../../view_models/main/home_view_model.dart';
-import '../../view_models/main/profile_view_model.dart';
 import '../../view_models/main/trainer_view_model.dart';
 import '../items/item_trainer_view.dart';
 
@@ -41,7 +31,6 @@ class _TrainerViewState extends State<TrainerView>
 
   buildWidget(BuildContext context, TrainerViewModel model, Widget? child) {
     setStatusBarColor(ColorUtils.appColorTransparent);
-    var height = MediaQuery.of(context).size.height;
     return PopScope(
       child: Scaffold(
         backgroundColor: ColorUtils.appColorMain,

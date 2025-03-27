@@ -1,9 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
 import 'package:nxtlvl_app/extentions/widget_extensions.dart';
 import 'package:stacked/stacked.dart';
 
@@ -11,9 +7,7 @@ import '../../utils/color_utils.dart';
 import '../../utils/image_utils.dart';
 import '../../utils/size_utils.dart';
 import '../../utils/string_utils.dart';
-import '../../utils/system_utils.dart';
 import '../../utils/widget_utils.dart';
-import '../../view_models/main/home_view_model.dart';
 import '../../view_models/main/profile_view_model.dart';
 import '../items/item_glass_card.dart';
 import '../items/item_profile_view.dart';
@@ -180,7 +174,7 @@ class _ProfileViewState extends State<ProfileView> with AutomaticKeepAliveClient
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                margin: const EdgeInsets.fromLTRB(10, 10, 10, 30),
+                                margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                                 child: GestureDetector(
                                     child: textViewUnderline(
                                       StringUtils.txtRemoveAccount,

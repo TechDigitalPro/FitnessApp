@@ -31,7 +31,6 @@ class _HomeViewState extends State<HomeView>
 
   buildWidget(BuildContext context, HomeViewModel model, Widget? child) {
     setStatusBarColor(ColorUtils.appColorTransparent);
-    var height = MediaQuery.of(context).size.height;
     return PopScope(
       child: Scaffold(
         backgroundColor: ColorUtils.appColorMain,
