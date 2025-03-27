@@ -113,6 +113,10 @@ class StringUtils {
   static String txtDistance = 'Distance';
   static String txtReadPDF = 'Read PDF';
   static String txtSearch = 'Search';
+  static String txtStart = 'Start';
+  static String txtCurrentPlan = 'Current Plan';
+  static String txtSurePlan = 'Are you sure you want to start PLAN?';
+  static String txtNoVideo = 'There is no Video';
   static String txtYouMustCreateOrLogin = 'You must create an account or log in to access the content';
   static String txtYouMustVerifyEmail = 'You must verify your email to access the content';
 
@@ -126,11 +130,6 @@ class StringUtils {
   static String txtLocationPermissionsAreDenied = 'Location permissions are denied';
   static String txtLocationPermissionsArePermanentlyDenied = 'Location permissions are permanently denied, we cannot request permissions.';
 
-  static String txtNavFlashDealsAll = 'Nav Flash Deals All';
-  static String txtNavWeekDealsAll = 'Nav Week Deals All';
-  static String txtNavECatalogueDealsAll = 'Nav ECatalogue Deals All';
-  static String txtNavEndingSoonDealsAll = 'Nav Ending Soon Deals All';
-  static String txtNavHalloweenDealsAll = 'Nav Halloween Deals All';
   static String txtNavShops = 'Nav Shops';
   static String txtNavFavoriteShopsAll = 'Nav Favorite Shops All';
   static String txtNavMalls = 'Nav Malls';

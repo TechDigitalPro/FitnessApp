@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nxtlvl_app/utils/string_utils.dart';
@@ -10,8 +11,9 @@ import '../../utils/image_utils.dart';
 import '../../utils/size_utils.dart';
 import '../../utils/system_utils.dart';
 import '../../utils/widget_utils.dart';
-import '../../view_models/main/trainer_detail_view_model.dart';
+import '../../view_models/other/trainer_detail_view_model.dart';
 import '../items/item_appbar_logo_h.dart';
+import '../items/item_plan_view.dart';
 
 // ignore: must_be_immutable
 class TrainerDetailView extends StatefulWidget {
@@ -55,71 +57,95 @@ class _TrainerDetailViewState extends State<TrainerDetailView>
               bottom: MediaQuery.of(context).padding.bottom,
             ),
             child: Stack(children: <Widget>[
-              Column(
-                children: [
-                  SizedBox(
-                    height: height * 0.1,
-                    width: width,
-                  ),
-                  SingleChildScrollView(
-                      child: SizedBox(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: width * 9 / 16,
-                          child: ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                            child: model.trainerModel.imageUrl == null
-                                ? Container()
-                                : model.trainerModel.imageUrl!
-                                            .contains('http') ||
-                                        model.trainerModel.imageUrl!
-                                            .contains('https')
-                                    ? CachedNetworkImage(
-                                        imageUrl: model.trainerModel.imageUrl!,
-                                        width: width,
-                                        height: width * 9 / 16,
-                                        fit: BoxFit.cover,
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(Icons.error),
-                                      )
-                                    : Image.asset(
-                                        model.trainerModel.imageUrl!,
-                                        width: width,
-                                        height: width * 9 / 16,
-                                        fit: BoxFit.cover,
-                                      ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: width,
-                          child: textView(model.trainerModel.name,
-                              textColor: ColorUtils.appColorWhite,
-                              fontSize: SizeUtils.textSizeNormal,
-                              fontWeight: FontWeight.bold,
-                              isCentered: false,
-                              maxLine: 5),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        model.trainerModel.bio == null
-                            ? Container()
-                            : Container(
-                                child: textViewHtml(model.trainerModel.bio,
-                                    textColor: ColorUtils.appColorWhite,
-                                    fontSize: SizeUtils.textSizeMedium,
-                                    maxLine: 5),
-                              )
-                      ],
+              model.user == null ? Container() :
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: height * 0.1,
+                      width: width,
                     ),
-                  )),
-                ],
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: SizedBox(
+                          child: Column(
+                            children: [
+                              model.mList.isEmpty ? Container(height: 20,) :
+                              CarouselSlider(
+                                options: CarouselOptions(
+                                  aspectRatio: 1.2,
+                                  enlargeCenterPage: true,
+                                  enableInfiniteScroll: false,
+                                  initialPage: model.mList.length,
+                                  autoPlay: false,
+                                ),
+                                items: model.mList.map((item) {
+                                  return ItemPlanView(
+                                    model: item,
+                                    isSelected: model.user!.planId == item.id,
+                                    onClick: () {
+                                      model.onItemClicked(context, item);
+                                    },
+                                  );
+                                } ).toList(),
+                              ),
+                              SizedBox(
+                                child: ClipRRect(
+                                  borderRadius:
+                                      const BorderRadius.all(Radius.circular(10)),
+                                  child: model.trainerModel.imageUrl == null
+                                      ? Container()
+                                      : model.trainerModel.imageUrl!
+                                                  .contains('http') ||
+                                              model.trainerModel.imageUrl!
+                                                  .contains('https')
+                                          ? CachedNetworkImage(
+                                              imageUrl: model.trainerModel.imageUrl!,
+                                              width: width,
+                                              fit: BoxFit.fitWidth,
+                                              errorWidget: (context, url, error) =>
+                                                  const Icon(Icons.error),
+                                            )
+                                          : Image.asset(
+                                              model.trainerModel.imageUrl!,
+                                              width: width,
+                                              height: width * 9 / 16,
+                                              fit: BoxFit.cover,
+                                            ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SizedBox(
+                                width: width,
+                                child: textView(model.trainerModel.name,
+                                    textColor: ColorUtils.appColorWhite,
+                                    fontSize: SizeUtils.textSizeNormal,
+                                    fontWeight: FontWeight.bold,
+                                    isCentered: false,
+                                    maxLine: 5),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              model.trainerModel.bio == null
+                                  ? Container()
+                                  : Container(
+                                      child: textViewHtml(model.trainerModel.bio,
+                                          textColor: ColorUtils.appColorWhite,
+                                          fontSize: SizeUtils.textSizeMedium,
+                                          maxLine: 50),
+                                    )
+                            ],
+                          ),
+                        )),
+                    ),
+                  ],
+                ),
               ),
+              
               SizedBox(
                   child: SizedBox(
                 child: Column(

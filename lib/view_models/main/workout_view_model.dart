@@ -8,6 +8,7 @@ import '../../model/response/get_workouts_res.dart';
 import '../../utils/string_utils.dart';
 import '../../utils/widget_utils.dart';
 import '../../views/auth/login_view.dart';
+import '../../views/other/workout_detail_view.dart';
 import '../base_view_model.dart';
 
 class WorkoutViewModel extends BaseViewModel{
@@ -52,6 +53,6 @@ class WorkoutViewModel extends BaseViewModel{
   }
 
   onItemClicked(BuildContext context, WorkoutModel item) {
-
+    WorkoutDetailView(workout: item,).launch(context);
   }
 }

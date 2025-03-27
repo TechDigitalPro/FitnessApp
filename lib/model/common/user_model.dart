@@ -17,6 +17,8 @@ class UserModel {
   String? state;
   String? zip;
   String? imageUrl;
+  String? ownerId;
+  String? planId;
 
   UserModel({
     this.id,
@@ -35,6 +37,8 @@ class UserModel {
     this.state,
     this.zip,
     this.imageUrl,
+    this.ownerId,
+    this.planId,
   });
 
   Map<String, dynamic> toJson() => {
@@ -54,6 +58,8 @@ class UserModel {
         'state': state,
         'zip': zip,
         'photo': imageUrl,
+        'ownerId': ownerId,
+        'planId': planId,
       };
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -73,5 +79,7 @@ class UserModel {
         state: json['state'],
         zip: json['zip'],
         imageUrl: json['photo'] == null ? null : json['photo'].toString().contains("http") ? json['photo'].toString() : ApiUtils.urlImagePre + json['photo'].toString(),
+        ownerId: json['ownerId'],
+        planId: json['planId'],
       );
 }

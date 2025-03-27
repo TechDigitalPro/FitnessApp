@@ -2,12 +2,15 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import '../model/request/get_plan_req.dart';
 import '../model/request/get_workouts_req.dart';
 import '../model/request/login_req.dart';
 import '../model/request/register_req.dart';
 import '../model/request/resend_verification_req.dart';
+import '../model/request/set_plan_req.dart';
 import '../model/request/verify_email_req.dart';
 import '../model/response/api_res.dart';
+import '../model/response/common_res.dart';
 import '../model/response/get_news_res.dart';
 import '../model/response/get_plan_res.dart';
 import '../model/response/get_trainers_res.dart';
@@ -166,11 +169,22 @@ class NetworkService {
     return response;
   }
 
-  Future<GetPlansRes?> doGetPlans(String token) async {
-    var res = await doPostRequest(ApiUtils.urlGetPlanList, token: token);
+  Future<GetPlansRes?> doGetPlans(String token, GetPlanReq req) async {
+    var res = await doPostRequest(ApiUtils.urlGetPlanList, token: token, body: req.toJson());
     GetPlansRes? response;
     try{
       response = GetPlansRes.fromJson(res);
+    }catch (e){
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  Future<CommonRes?> doSetPlans(String token, SetPlanReq req) async {
+    var res = await doPostRequest(ApiUtils.urlSetPlan, token: token, body: req.toJson());
+    CommonRes? response;
+    try{
+      response = CommonRes.fromJson(res);
     }catch (e){
       debugPrint(e.toString());
     }
