@@ -14,6 +14,7 @@ import '../../utils/string_utils.dart';
 import '../../utils/widget_utils.dart';
 import '../../views/auth/login_view.dart';
 import '../../views/dialog/confirm_dlg.dart';
+import '../../views/other/news_detail_view.dart';
 import '../../views/other/news_list_view.dart';
 import '../../views/other/plan_detail_view.dart';
 import '../base_view_model.dart';
@@ -99,7 +100,7 @@ class HomeViewModel extends BaseViewModel{
   }
 
   onNewsItemClicked(BuildContext context, NewsModel item) {
-
+    NewsDetailView(news: item,).launch(context);
   }
 
   onClickAllNews(BuildContext context) {

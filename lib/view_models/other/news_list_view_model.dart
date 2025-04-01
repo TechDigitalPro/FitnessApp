@@ -8,6 +8,7 @@ import '../../model/response/get_news_res.dart';
 import '../../utils/string_utils.dart';
 import '../../utils/widget_utils.dart';
 import '../../views/auth/login_view.dart';
+import '../../views/other/news_detail_view.dart';
 import '../base_view_model.dart';
 
 class NewsListViewModel extends BaseViewModel{
@@ -50,6 +51,6 @@ class NewsListViewModel extends BaseViewModel{
   }
 
   onItemClicked(BuildContext context, NewsModel item) {
-      // TrainerDetailView(trainer: item,).launch(context);
+      NewsDetailView(news: item,).launch(context);
   }
 }

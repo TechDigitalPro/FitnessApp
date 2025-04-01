@@ -74,6 +74,7 @@ class StringUtils {
   static String txtVerify = 'Verify';
   static String txtReSendVerificationCode = 'Resend code';
   static String txtWorkout = 'Workouts';
+  static String txtComment = 'Comments';
   static String txtTrainer = 'Trainers';
   static String txtHome = 'Home';
   static String txtNews = 'News';
