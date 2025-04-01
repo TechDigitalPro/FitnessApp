@@ -117,6 +117,7 @@ class StringUtils {
   static String txtStart = 'Start';
   static String txtCurrentPlan = 'Current Plan';
   static String txtSurePlan = 'Are you sure you want to start PLAN?';
+  static String txtCancelPlan = 'Are you sure you want to cancel PLAN?';
   static String txtNoVideo = 'There is no Video';
   static String txtYouMustCreateOrLogin = 'You must create an account or log in to access the content';
   static String txtYouMustVerifyEmail = 'You must verify your email to access the content';

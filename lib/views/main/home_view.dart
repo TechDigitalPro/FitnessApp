@@ -91,7 +91,7 @@ class _HomeViewState extends State<HomeView>
                       return ItemNewsView(
                         model: item,
                         onClick: () {
-                          model.onItemClicked(context, item);
+                          model.onNewsItemClicked(context, item);
                         },
                       );
                     }).toList(),
@@ -131,8 +131,11 @@ class _HomeViewState extends State<HomeView>
                   return ItemPlanView(
                     model: item,
                     isSelected: isSelected,
-                    onClick: () {
-                      model.onClickPlanItem(context, item);
+                    onStartClick: () {
+                      model.onClickStartPlan(context, item);
+                    },
+                    onItemClick: () {
+                      model.onPlanItemClicked(context, item);
                     },
                   );
                 }).toList(),

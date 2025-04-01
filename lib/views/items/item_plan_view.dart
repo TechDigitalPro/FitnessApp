@@ -11,12 +11,14 @@ class ItemPlanView extends StatefulWidget {
   ItemPlanView({
     super.key,
     required this.model,
-    required this.onClick,
+    required this.onStartClick,
+    required this.onItemClick,
     required this.isSelected,
   });
 
   final PlanModel model;
-  final Function onClick;
+  final Function onStartClick;
+  final Function onItemClick;
   bool isSelected = false;
 
   @override
@@ -27,7 +29,9 @@ class ItemPlanViewState extends State<ItemPlanView> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {},
+        onTap: () {
+          widget.onItemClick();
+        },
         child: Container(
           padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
           child: ItemGlassCard(
@@ -75,7 +79,7 @@ class ItemPlanViewState extends State<ItemPlanView> {
                               textColor: ColorUtils.appColorPrimary,
                               radius: 5,
                               onPressed: () {
-                                widget.onClick();
+                                widget.onStartClick();
                               }),
                         ),
                       ],

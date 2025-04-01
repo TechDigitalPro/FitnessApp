@@ -3,9 +3,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:nxtlvl_app/extentions/widget_extensions.dart';
-import 'package:nxtlvl_app/model/common/trainer_model.dart';
-import 'package:nxtlvl_app/views/dialog/confirm_dlg.dart';
 import '../../model/common/plan_model.dart';
+import '../../model/common/trainer_model.dart';
 import '../../model/common/user_model.dart';
 import '../../model/request/get_plan_req.dart';
 import '../../model/request/set_plan_req.dart';
@@ -14,6 +13,8 @@ import '../../model/response/get_plan_res.dart';
 import '../../utils/string_utils.dart';
 import '../../utils/widget_utils.dart';
 import '../../views/auth/login_view.dart';
+import '../../views/dialog/confirm_dlg.dart';
+import '../../views/other/plan_detail_view.dart';
 import '../base_view_model.dart';
 
 class TrainerDetailViewModel extends BaseViewModel{
@@ -57,20 +58,16 @@ class TrainerDetailViewModel extends BaseViewModel{
     }
   }
 
-  onItemClicked(BuildContext context, PlanModel item, bool isCurrent) {
-    if(isCurrent) {
-      onPlanStart(context, item, false);
-    } else {
-      showDialog(
+  onItemStartClicked(BuildContext context, PlanModel item, bool isCurrent) {
+    showDialog(
         context: context,
         builder: (BuildContext dlgContext) => ConfirmDlg(
             title: StringUtils.txtConfirm,
-            descriptions: "${StringUtils.txtSurePlan}\nof\n${trainerModel.name}",
-            buttonText: StringUtils.txtStart,
+            descriptions: "${isCurrent ? StringUtils.txtCancelPlan : StringUtils.txtSurePlan}\nof\n${trainerModel.name}",
+            buttonText: isCurrent ? StringUtils.txtConfirm : StringUtils.txtStart,
             onClickConfirm: () {
-              onPlanStart(context, item, true);
+              onPlanStart(context, item, isCurrent ? false : true);
             }));
-    }
   }
 
   onPlanStart(BuildContext context, PlanModel item, bool isStart) async{
@@ -119,5 +116,9 @@ class TrainerDetailViewModel extends BaseViewModel{
       hideLoading();
       debugPrint(e.toString());
     }
+  }
+
+  onItemClicked(BuildContext context, PlanModel item) {
+    PlanDetailView(plan: item,).launch(context);
   }
 }

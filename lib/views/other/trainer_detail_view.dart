@@ -93,8 +93,11 @@ class _TrainerDetailViewState extends State<TrainerDetailView>
                                   return ItemPlanView(
                                     model: item,
                                     isSelected: isSelected,
-                                    onClick: () {
-                                      model.onItemClicked(context, item, isSelected);
+                                    onStartClick: () {
+                                      model.onItemStartClicked(context, item, isSelected);
+                                    },
+                                    onItemClick: () {
+                                      model.onItemClicked(context, item);
                                     },
                                   );
                                 } ).toList(),
