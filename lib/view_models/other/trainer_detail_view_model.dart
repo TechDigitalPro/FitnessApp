@@ -1,5 +1,6 @@
 
 
+
 import 'package:flutter/material.dart';
 import 'package:nxtlvl_app/extentions/widget_extensions.dart';
 import 'package:nxtlvl_app/model/common/trainer_model.dart';
@@ -56,9 +57,9 @@ class TrainerDetailViewModel extends BaseViewModel{
     }
   }
 
-  onItemClicked(BuildContext context, PlanModel item) {
-    if(user!.planId == item.id) {
-
+  onItemClicked(BuildContext context, PlanModel item, bool isCurrent) {
+    if(isCurrent) {
+      onPlanStart(context, item, false);
     } else {
       showDialog(
         context: context,
@@ -67,18 +68,26 @@ class TrainerDetailViewModel extends BaseViewModel{
             descriptions: "${StringUtils.txtSurePlan}\nof\n${trainerModel.name}",
             buttonText: StringUtils.txtStart,
             onClickConfirm: () {
-              onPlanStart(context, item);
+              onPlanStart(context, item, true);
             }));
     }
   }
 
-  onPlanStart(BuildContext context, PlanModel item) async{
+  onPlanStart(BuildContext context, PlanModel item, bool isStart) async{
     try {
       showLoading();
+      String planId = user!.planId ?? '';
+      if(isStart) {
+        planId = '${user!.planId},${item.id}';
+      } else {
+          List<String> list = planId.split(',');
+          list.remove(item.id);
+          planId = list.join(',');
+      }
+
       SetPlanReq req = SetPlanReq(
         userId: user!.id,
-        planId: item.id,
-        ownerId: trainerModel.id,
+        planId: planId,
       );
       CommonRes? res = await networkService.doSetPlans(token ?? '', req);
       hideLoading();

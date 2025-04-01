@@ -26,7 +26,7 @@ class ItemWorkoutViewState extends State<ItemWorkoutView> {
     var width = MediaQuery.of(context).size.width;
 
     Widget image = ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      borderRadius: const BorderRadius.all(Radius.circular(5)),
       child: widget.model.imageUrl == null ? Container()
       : widget.model.imageUrl!.contains('http') || widget.model.imageUrl!.contains('https') 
       ? CachedNetworkImage(
@@ -48,7 +48,7 @@ class ItemWorkoutViewState extends State<ItemWorkoutView> {
           widget.onClick();
         },
         child: Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
           child: ItemGlassCard(
             child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -73,20 +73,20 @@ class ItemWorkoutViewState extends State<ItemWorkoutView> {
                         child: textView(
                           widget.model.name,
                           textColor: ColorUtils.appColorWhite,
-                          fontSize: SizeUtils.textSizeNormal,
+                          fontSize: SizeUtils.textSizeMedium,
                           fontWeight: FontWeight.bold,
                           isCentered: false,
                           maxLine: 5),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       widget.model.description == null ? Container() :
                       Container(
                         child: textViewHtml(
                           widget.model.description,
-                          textColor: ColorUtils.appColorWhite,
-                          fontSize: SizeUtils.textSizeMedium,),
+                          textColor: ColorUtils.appColorWhite_80,
+                          fontSize: SizeUtils.textSizeSMedium,),
                       )
                     ],
                   )),

@@ -73,7 +73,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView>
                                   SizedBox(
                                     child: ClipRRect(
                                       borderRadius:
-                                          const BorderRadius.all(Radius.circular(10)),
+                                          const BorderRadius.all(Radius.circular(5)),
                                       child: model.workoutModel.imageUrl == null
                                           ? Container()
                                           : model.workoutModel.imageUrl!
@@ -116,7 +116,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView>
                                 width: width,
                                 child: textView(model.workoutModel.name,
                                     textColor: ColorUtils.appColorWhite,
-                                    fontSize: SizeUtils.textSizeNormal,
+                                    fontSize: SizeUtils.textSizeMedium,
                                     fontWeight: FontWeight.bold,
                                     isCentered: false,
                                     maxLine: 5),
@@ -128,8 +128,8 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView>
                                   ? Container()
                                   : Container(
                                       child: textViewHtml(model.workoutModel.description,
-                                          textColor: ColorUtils.appColorWhite,
-                                          fontSize: SizeUtils.textSizeMedium,
+                                          textColor: ColorUtils.appColorWhite_80,
+                                          fontSize: SizeUtils.textSizeSMedium,
                                           maxLine: 50),
                                     )
                             ],

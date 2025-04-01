@@ -151,8 +151,8 @@ class _ProfileViewState extends State<ProfileView> with AutomaticKeepAliveClient
                               child: Container(
                                 child: textViewHtml(
                                   model.user!.bio,
-                                  textColor: ColorUtils.appColorWhite,
-                                  fontSize: SizeUtils.textSizeMedium,
+                                  textColor: ColorUtils.appColorWhite_80,
+                                  fontSize: SizeUtils.textSizeSMedium,
                                   maxLine: 50),
                               ),
                             )

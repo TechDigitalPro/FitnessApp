@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import '../model/request/get_my_plan_req.dart';
 import '../model/request/get_plan_req.dart';
 import '../model/request/get_workouts_req.dart';
 import '../model/request/login_req.dart';
@@ -185,6 +186,17 @@ class NetworkService {
     CommonRes? response;
     try{
       response = CommonRes.fromJson(res);
+    }catch (e){
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  Future<GetPlansRes?> doGetMyPlans(String token, GetMyPlanReq req) async {
+    var res = await doPostRequest(ApiUtils.urlGetMyPlans, token: token, body: req.toJson());
+    GetPlansRes? response;
+    try{
+      response = GetPlansRes.fromJson(res);
     }catch (e){
       debugPrint(e.toString());
     }

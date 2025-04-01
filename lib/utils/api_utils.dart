@@ -23,6 +23,7 @@ class ApiUtils {
   // Plans
   static String urlGetPlanList = '${BASE_URL}auth/plans/all';
   static String urlSetPlan = '${BASE_URL}auth/clients/setplan';
+  static String urlGetMyPlans = '${BASE_URL}auth/clients/plans';
     
   // Plans
   static String urlGetPackagesList = '${BASE_URL}auth/packages/all';

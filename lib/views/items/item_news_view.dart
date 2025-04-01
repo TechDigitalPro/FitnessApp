@@ -26,19 +26,19 @@ class ItemNewsViewState extends State<ItemNewsView> {
     var width = MediaQuery.of(context).size.width;
 
     Widget image = ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      borderRadius: const BorderRadius.all(Radius.circular(5)),
       child: widget.model.imageUrl == null ? Container()
       : widget.model.imageUrl!.contains('http') || widget.model.imageUrl!.contains('https') 
       ? CachedNetworkImage(
           imageUrl: widget.model.imageUrl!,
           width: width,
-          height: width * 9 / 16,
+          height: width * 0.3,
           fit: BoxFit.cover,
           errorWidget: (context, url, error) => const Icon(Icons.error),
         )
       : Image.asset(widget.model.imageUrl!,
         width: width,
-        height: width * 9 / 16,
+        height: width * 0.3,
         fit: BoxFit.cover,
       ),
     );
@@ -48,7 +48,8 @@ class ItemNewsViewState extends State<ItemNewsView> {
           widget.onClick();
         },
         child: Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+          width: width * 0.5,
           child: ItemGlassCard(
             child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -57,7 +58,7 @@ class ItemNewsViewState extends State<ItemNewsView> {
                   Stack(
                     children: [
                       SizedBox(
-                        height: width * 9 / 16,
+                        height: width * 0.3,
                         child: image,
                       ),
                     ],
@@ -73,21 +74,20 @@ class ItemNewsViewState extends State<ItemNewsView> {
                         child: textView(
                           widget.model.title,
                           textColor: ColorUtils.appColorWhite,
-                          fontSize: SizeUtils.textSizeNormal,
+                          fontSize: SizeUtils.textSizeMedium,
                           fontWeight: FontWeight.bold,
                           isCentered: false,
                           maxLine: 2),
                       ),
-                      const SizedBox(height: 10,),
+                      const SizedBox(height: 5,),
                       widget.model.content == null ? Container() :
                       Container(
-                        child: textViewHtml(
+                        child: textView(
                           widget.model.content,
-                          textColor: ColorUtils.appColorWhite,
-                          fontSize: SizeUtils.textSizeMedium,),
+                          textColor: ColorUtils.appColorWhite_80,
+                          fontSize: SizeUtils.textSizeSMedium,
+                          maxLine: 3),
                       ),
-                      const SizedBox(height: 10,),
-                      
                     ],
                   )),
                 ],

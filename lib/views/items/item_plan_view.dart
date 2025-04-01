@@ -26,66 +26,63 @@ class ItemPlanView extends StatefulWidget {
 class ItemPlanViewState extends State<ItemPlanView> {
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-
     return GestureDetector(
-        onTap: () {
-          
-        },
+        onTap: () {},
         child: Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
           child: ItemGlassCard(
             child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  SizedBox(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: width,
-                        child: textView(
-                          widget.model.name,
-                          textColor: ColorUtils.appColorWhite,
-                          fontSize: SizeUtils.textSizeNormal,
-                          fontWeight: FontWeight.bold,
-                          isCentered: false,
-                          maxLine: 5),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      widget.model.description == null ? Container() :
-                      Container(
-                        child: textViewHtml(
-                          widget.model.description,
-                          textColor: ColorUtils.appColorWhite,
-                          fontSize: SizeUtils.textSizeSmall,),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        margin: const EdgeInsets.fromLTRB(
-                            5, 15, 5, 15),
-                        child: RoundButton(
-                            backgroundColor: 
-                            widget.isSelected ?
-                            ColorUtils.appColorWhite_80 : ColorUtils.appColorAccent,
-                            isStroked: false,
-                            textContent: 
-                            widget.isSelected ?
-                            StringUtils.txtCurrentPlan : StringUtils.txtStart,
-                            textSize: SizeUtils.textSizeMedium,
-                            textColor: ColorUtils.appColorPrimary,
-                            radius: 5,
-                            onPressed: () {
-                              widget.onClick();
-                            }),
-                      ),
-                    ],
-                  )),
-                ],
-              ),
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SizedBox(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          child: textView(widget.model.name,
+                              textColor: ColorUtils.appColorWhite,
+                              fontSize: SizeUtils.textSizeNormal,
+                              fontWeight: FontWeight.bold,
+                              isCentered: false,
+                              maxLine: 5),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        widget.model.description == null
+                            ? Container()
+                            : Container(
+                                child: textView(
+                                  widget.model.description,
+                                  textColor: ColorUtils.appColorWhite_80,
+                                  fontSize: SizeUtils.textSizeSMedium,
+                                  maxLine: 5,
+                                ),
+                              ),
+                        Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.fromLTRB(5, 15, 5, 0),
+                          child: RoundButton(
+                              backgroundColor: widget.isSelected
+                                  ? ColorUtils.appColorWhite_80
+                                  : ColorUtils.appColorAccent,
+                              isStroked: false,
+                              textContent: widget.isSelected
+                                  ? StringUtils.txtCurrentPlan
+                                  : StringUtils.txtStart,
+                              textSize: SizeUtils.textSizeSMedium,
+                              textColor: ColorUtils.appColorPrimary,
+                              radius: 5,
+                              onPressed: () {
+                                widget.onClick();
+                              }),
+                        ),
+                      ],
+                    )
+                  ),
+              ],
+            ),
           ),
         ));
   }

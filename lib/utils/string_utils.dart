@@ -84,7 +84,7 @@ class StringUtils {
   static String txtNotifications = 'Notifications';
   static String txtSettings = 'Settings';
   static String txtLogout = 'Logout';
-  static String txtDeals = 'Deals';
+  static String txtInformation = 'Information';
   static String txtCategory = 'Category';
   static String txtBestDealsOfTheWeek = 'Best Deals of the Week';
   static String txtFlashSales = 'Flash Sales';
@@ -92,7 +92,8 @@ class StringUtils {
   static String txtEndingSoon = 'Ending Soon';
   static String txtGrocery = 'Grocery';
   static String txtECatalogues = 'e-Catalogues';
-  static String txtMyFavoriteShops = 'My Favorite Shops';
+  static String txtMyPlans = 'My Workout Plans';
+  static String txtWorkoutPlans = 'Workout Plans';
   static String txtContactDetails = 'Contact details';
   static String txtAddFavoriteShops = 'Add favorite shops';
   static String txtItsYourLuckyDay = 'It\'s your lucky day!';

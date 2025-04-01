@@ -13,6 +13,7 @@ import '../../utils/system_utils.dart';
 import '../../utils/widget_utils.dart';
 import '../../view_models/other/trainer_detail_view_model.dart';
 import '../items/item_appbar_logo_h.dart';
+import '../items/item_main_header.dart';
 import '../items/item_plan_view.dart';
 
 // ignore: must_be_immutable
@@ -27,7 +28,6 @@ class TrainerDetailView extends StatefulWidget {
 
 class _TrainerDetailViewState extends State<TrainerDetailView>
     with TickerProviderStateMixin {
-  TabController? tabController;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,6 @@ class _TrainerDetailViewState extends State<TrainerDetailView>
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 4, vsync: this);
   }
 
   buildWidget(
@@ -71,29 +70,47 @@ class _TrainerDetailViewState extends State<TrainerDetailView>
                         child: SizedBox(
                           child: Column(
                             children: [
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                                child: ItemMainHeader(
+                                  isHideAll: true,
+                                  content: StringUtils.txtWorkoutPlans,
+                                  onClicked: () {},
+                                )
+                              ),
                               model.mList.isEmpty ? Container(height: 20,) :
                               CarouselSlider(
                                 options: CarouselOptions(
-                                  aspectRatio: 1.2,
+                                  height: width * 0.7,
                                   enlargeCenterPage: true,
                                   enableInfiniteScroll: false,
-                                  initialPage: model.mList.length,
+                                  initialPage: 0,
                                   autoPlay: false,
+                                  enlargeFactor: 0.2
                                 ),
                                 items: model.mList.map((item) {
+                                  bool isSelected = (model.user!.planId?.isNotEmpty ?? false) && model.user!.planId!.split(',').contains(item.id);
                                   return ItemPlanView(
                                     model: item,
-                                    isSelected: model.user!.planId == item.id,
+                                    isSelected: isSelected,
                                     onClick: () {
-                                      model.onItemClicked(context, item);
+                                      model.onItemClicked(context, item, isSelected);
                                     },
                                   );
                                 } ).toList(),
                               ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                child: ItemMainHeader(
+                                  isHideAll: true,
+                                  content: StringUtils.txtInformation,
+                                  onClicked: () {},
+                                ),
+                              ),
                               SizedBox(
                                 child: ClipRRect(
                                   borderRadius:
-                                      const BorderRadius.all(Radius.circular(10)),
+                                      const BorderRadius.all(Radius.circular(5)),
                                   child: model.trainerModel.imageUrl == null
                                       ? Container()
                                       : model.trainerModel.imageUrl!
@@ -122,7 +139,7 @@ class _TrainerDetailViewState extends State<TrainerDetailView>
                                 width: width,
                                 child: textView(model.trainerModel.name,
                                     textColor: ColorUtils.appColorWhite,
-                                    fontSize: SizeUtils.textSizeNormal,
+                                    fontSize: SizeUtils.textSizeMedium,
                                     fontWeight: FontWeight.bold,
                                     isCentered: false,
                                     maxLine: 5),
@@ -134,8 +151,8 @@ class _TrainerDetailViewState extends State<TrainerDetailView>
                                   ? Container()
                                   : Container(
                                       child: textViewHtml(model.trainerModel.bio,
-                                          textColor: ColorUtils.appColorWhite,
-                                          fontSize: SizeUtils.textSizeMedium,
+                                          textColor: ColorUtils.appColorWhite_80,
+                                          fontSize: SizeUtils.textSizeSMedium,
                                           maxLine: 50),
                                     )
                             ],
