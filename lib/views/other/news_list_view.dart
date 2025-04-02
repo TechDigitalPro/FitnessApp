@@ -49,7 +49,7 @@ class _NewsListViewState extends State<NewsListView>
             ),
             child: Stack(children: <Widget>[
               model.user == null ? Container() :
-              Container(
+              SizedBox(
                 child: Column(
                   children: [
                     SizedBox(

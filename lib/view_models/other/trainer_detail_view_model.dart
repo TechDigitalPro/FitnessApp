@@ -61,13 +61,15 @@ class TrainerDetailViewModel extends BaseViewModel{
   onItemStartClicked(BuildContext context, PlanModel item, bool isCurrent) {
     showDialog(
         context: context,
-        builder: (BuildContext dlgContext) => ConfirmDlg(
+        builder: (BuildContext dlgContext) {
+          return ConfirmDlg(
             title: StringUtils.txtConfirm,
             descriptions: "${isCurrent ? StringUtils.txtCancelPlan : StringUtils.txtSurePlan}\nof\n${trainerModel.name}",
             buttonText: isCurrent ? StringUtils.txtConfirm : StringUtils.txtStart,
             onClickConfirm: () {
               onPlanStart(context, item, isCurrent ? false : true);
-            }));
+            });
+        });
   }
 
   onPlanStart(BuildContext context, PlanModel item, bool isStart) async{

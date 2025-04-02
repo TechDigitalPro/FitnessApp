@@ -109,14 +109,16 @@ class HomeViewModel extends BaseViewModel{
 
   onClickStartPlan(BuildContext context, PlanModel item) {
     showDialog(
-        context: context,
-        builder: (BuildContext dlgContext) => ConfirmDlg(
-            title: StringUtils.txtConfirm,
-            descriptions: StringUtils.txtCancelPlan,
-            buttonText: StringUtils.txtConfirm,
-            onClickConfirm: () {
-              onPlanStart(context, item, false);
-            }));
+      context: context,
+      builder: (BuildContext dlgContext) {
+        return ConfirmDlg(
+          title: StringUtils.txtConfirm,
+          descriptions: StringUtils.txtCancelPlan,
+          buttonText: StringUtils.txtConfirm,
+          onClickConfirm: () {
+            onPlanStart(context, item, false);
+          });
+      });
   }
 
   onPlanStart(BuildContext context, PlanModel item, bool isStart) async{
@@ -143,7 +145,9 @@ class HomeViewModel extends BaseViewModel{
           sharedService.saveUser(user);
           
           if(context.mounted) {
-            getMyPlans(context);
+            showLoading();
+            await getMyPlans(context);
+            hideLoading();
           }
         } else {
           Future.delayed(const Duration(milliseconds: 100)).then((value) {
