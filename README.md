@@ -1,4 +1,4 @@
-# nxtlvl_app
+# FitnessApp
 
 A new Flutter project.
 
